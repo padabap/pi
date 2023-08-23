@@ -41,9 +41,14 @@ Install Docker and set your user permissions. You will be logged out and need to
 
 ```
 curl -sSL https://get.docker.com | sh
-
 sudo usermod -aG docker $USER
 logout
+```
+
+After re-logging in, enable the Docker system service. This ensures Docker automatically starts whenever you reboot your system and will also start containers configured with a restart-policy of always or unless-stopped. 
+
+```
+sudo systemctl enable docker
 ```
 
 ### Portainer
