@@ -101,3 +101,22 @@ cd ~/pi/pihole && docker compose up -d
 ```
 
 Access the pi-hole UI at `http://<ip_address>/admin/index.php`.
+
+### Prometheus & Grafana
+[Prometheus](https://prometheus.io) + [Node Exporter](https://github.com/prometheus/node_exporter?tab=readme-ov-file) is a data store for hardware and kernal metrics. With [Grafana](https://grafana.com) as a data visualizer, you can get a nice dashboard of your system metrics.
+
+Update the username and password environment variables in [prometheus-grafana/docker-compose.yml](https://github.com/padabap/pi/blob/main/prometheus-grafana/docker-compose.yml) as desired:
+- `GF_SECURITY_ADMIN_USER`
+- `GF_SECURITY_ADMIN_PASSWORD`
+
+Start everything up:
+```
+cd ~/pi/prometheus-grafana && docker compose up -d
+```
+
+Verify all 3 services are running, it may take a few minutes to load:
+- See metrics via Node Exporter at `http://<ip_address>:9100/metrics`
+- Prometheus should now be running at `http://<ip_address>:9090`
+- Grafana should now be running at `http://<ip_address>:3000`
+
+You can create a dashboard on the Grafana webpage once all 3 services are running. Log in via the username/password set in the docker-compose fil (default username = "admin", password = "grafana"). Then create a new dashboard - [Node Exporter Full](https://grafana.com/grafana/dashboards/1860-node-exporter-full/) is the template I use. Import the dashboard template via its ID and select your Prometheus datasource to visualize your metrics.
