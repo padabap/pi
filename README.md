@@ -31,8 +31,26 @@ sudo apt upgrade -y
 ```
 sudo apt install \
   vim \
-  git      
+  git
 ```
+
+### Swtich to zsh shell and use oh my zsh
+Install zsh
+```
+sudo apt install zsh
+```
+
+Set it as your default shell
+```
+chsh -s /bin/zsh
+```
+
+Install oh my zsh
+```
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
+Install the plugins [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) and [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting/tree/master). Add `git` and `history` to the plugins list in `~/.zshrc`.
 
 ### Docker
 [Docker](https://www.docker.com) is a software platform for building applications based on containers. It is used to run all the applications on my Pi.
@@ -71,7 +89,7 @@ Update the `HOMEBRIDGE_CONFIG_UI_PORT` env var in the [homebridge/docker-compose
 cd ~/pi/homebridge && docker compose up -d
 ```
 
-Access the homebridge UI via `http://<ip_address>:<port_number>`.
+Access the homebridge UI via `http://<ip_address>:<port_number>`. The default port number is 8581.
 
 ### Pi-hole
 [Pi-hole](https://github.com/pi-hole/pi-hole) is a DNS sinkhole the blocks network-level advertisements and Internet trackers.
